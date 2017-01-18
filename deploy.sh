@@ -17,5 +17,5 @@ fi
 
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then 
   echo "regular build"
-  mvn test -B
+  mvn test
 fi
