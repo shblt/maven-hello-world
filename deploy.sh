@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
-echo TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
+echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
 
 echo $TRAVIS_PULL_REQUEST_BRANCH
 
@@ -15,7 +15,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
   
 fi
 
-if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then 
+if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then 
   echo "regular build"
   mvn test
 fi
