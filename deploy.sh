@@ -5,10 +5,10 @@ echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
 
 echo $TRAVIS_PULL_REQUEST_BRANCH
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" != "master" ] && [ "TRAVIS_PULL_REQUEST_BRANCH" =~ release-v[\d.-]+$ ]; then
+if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" != "master" ] && [[ "TRAVIS_PULL_REQUEST_BRANCH" =~ release-v[\d.-]+$ ]]; then
   echo "merge detected"
   mvn -B release:prepare && mvn release:perform
-end
+fi
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then 
   echo "pull request"
