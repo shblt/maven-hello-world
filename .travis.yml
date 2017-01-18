@@ -13,7 +13,4 @@ cache:
   directories:
   - $HOME/.m2/repository
 script:
-  - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
-  - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
-  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash mvn -B release:prepare && mvn release:perform; fi'
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash mvn test -B; fi'
+  - "./deploy.sh"
