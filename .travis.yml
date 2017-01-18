@@ -13,4 +13,5 @@ cache:
   directories:
   - $HOME/.m2/repository
 script:
+  - "ls -la"
   - "./deploy.sh"
