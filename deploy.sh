@@ -16,6 +16,10 @@ if [ "$TRAVIS_BRANCH" == "master" ] && [[ $RELEASE_VERSION ]]; then
   echo "calling git"
   git checkout master
   git pull origin master
+
+
+  mvn release:clean release:prepare
+
   
   mvn -B release:prepare && mvn release:perform
   cat pom.xml | grep version
