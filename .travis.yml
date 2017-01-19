@@ -15,7 +15,7 @@ before_cache:
 cache:
   directories:
   - $HOME/.m2/repository
-deploy:
+after_success:
   provider: script
   script: scripts/deploy.sh
   on:
