@@ -9,11 +9,14 @@ before_install:
   - ls
   - git config --global user.name "Travis CI"
   - git config --global user.email "user@example.com"
+  - "export TRAVIS_COMMIT_MSG=\"$(git log --format=%B -n 1 | head -n 1)\""
 before_cache:
  - rm -rf $HOME/.m2/repository/
 cache:
   directories:
   - $HOME/.m2/repository
-script:
- - "export TRAVIS_COMMIT_MSG=\"$(git log --format=%B -n 1 | head -n 1)\""
- - "./deploy.sh"
+deploy:
+  provider: script
+  script: scripts/deploy.sh
+  on:
+    branch: master
