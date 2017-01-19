@@ -10,7 +10,10 @@ RELEASE_VERSION=$(echo $TRAVIS_COMMIT_MSG | grep -P '^Merge\spull\srequest\s.*\s
 echo $RELEASE_VERSION
 
 # Release merge if commit is a non-PR push into master from a release branch
-if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [[ "$RELEASE_VERSION" != "" ]]; then
+echo "$TRAVIS_BRANCH" == "master"
+echo "$RELEASE_VERSION" != ""
+
+if [ "$TRAVIS_BRANCH" == "master" ] && [[ $RELEASE_VERSION ]]; then
   echo "merge detected"
   echo "VERSION=$RELEASE_VERSION"
   mvn -B release:prepare && mvn release:perform
