@@ -17,7 +17,7 @@
   <properties>
     <!-- This property will be set by the Maven Dependency plugin -->
     <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
-    <github.maven.repository>file:///Users/shorbelt/</github.maven.repository>
+    <github.maven.repository>file:///Users/shorb/</github.maven.repository>
   </properties>
 
   <dependencies>
