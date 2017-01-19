@@ -12,10 +12,6 @@ echo $RELEASE_VERSION
 if [ "$TRAVIS_BRANCH" == "master" ] && [[ $RELEASE_VERSION ]]; then
   echo "merge detected"
   cat pom.xml | grep version
-
-  echo "calling git"
-  git checkout master
-  git pull origin master
   
   mvn -B release:clean release:prepare release:perform
   cat pom.xml | grep version
