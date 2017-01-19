@@ -15,7 +15,6 @@ if [ "$TRAVIS_BRANCH" == "master" ] && [[ $RELEASE_VERSION ]]; then
   mvn -B release:prepare && mvn release:perform
   cat pom.xml | grep version
 
-fi
 elif [ "$TRAVIS_PULL_REQUEST" != "false" ]; then 
   echo "pull request"
   
