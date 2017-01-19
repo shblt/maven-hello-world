@@ -14,14 +14,13 @@ if [ "$TRAVIS_BRANCH" == "master" ] && [[ $RELEASE_VERSION ]]; then
   cat pom.xml | grep version
   mvn -B release:prepare && mvn release:perform
   cat pom.xml | grep version
-fi
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then 
+fi
+elif [ "$TRAVIS_PULL_REQUEST" != "false" ]; then 
   echo "pull request"
   
-fi
-
-if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then 
+else
+#if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then 
   echo "regular build"
   mvn test
 fi
