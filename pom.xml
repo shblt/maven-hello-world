@@ -17,7 +17,7 @@
   <properties>
     <!-- This property will be set by the Maven Dependency plugin -->
     <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
-    <github.maven.repository>file:///Users/shorb/</github.maven.repository>
+    <github.maven.repository>${project.basedir}</github.maven.repository>
   </properties>
 
   <dependencies>
@@ -51,74 +51,75 @@
         <version>2.5.2</version>
       </plugin>
       <plugin>
-	<groupId>org.codehaus.mojo</groupId>
-	<artifactId>exec-maven-plugin</artifactId>
-	<version>1.2.1</version>
-	<executions>
-	  <execution>
-	    <goals>
-	      <goal>java</goal>
-	    </goals>
-	  </execution>
-	</executions>
-	<configuration>
-	  <mainClass>com.mycompany.app.App</mainClass>
-	  <arguments>
-	    <argument>argument1</argument>
-	  </arguments>
-	</configuration>
+      	<groupId>org.codehaus.mojo</groupId>
+      	<artifactId>exec-maven-plugin</artifactId>
+      	<version>1.2.1</version>
+      	<executions>
+      	  <execution>
+      	    <goals>
+      	      <goal>java</goal>
+      	    </goals>
+      	  </execution>
+      	</executions>
+      	<configuration>
+      	  <mainClass>com.mycompany.app.App</mainClass>
+      	  <arguments>
+      	    <argument>argument1</argument>
+      	  </arguments>
+      	</configuration>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-shade-plugin</artifactId>
-	<version>2.1</version>
-	<executions>
-	  <execution>
-	    <phase>package</phase>
-	    <goals>
-	      <goal>shade</goal>
-	    </goals>
-	    <configuration>
-	      <transformers>
-		<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-		  <mainClass>com.mycompany.app.App</mainClass>
-		</transformer>
-	      </transformers>
-	    </configuration>
-	  </execution>
-	</executions>
+      	<groupId>org.apache.maven.plugins</groupId>
+      	<artifactId>maven-shade-plugin</artifactId>
+      	<version>2.1</version>
+      	<executions>
+      	  <execution>
+      	    <phase>package</phase>
+      	    <goals>
+      	      <goal>shade</goal>
+      	    </goals>
+      	    <configuration>
+      	      <transformers>
+      		<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+      		  <mainClass>com.mycompany.app.App</mainClass>
+      		</transformer>
+      	      </transformers>
+      	    </configuration>
+      	  </execution>
+      	</executions>
       </plugin>
       <plugin>
-          <!-- This plugin will set the properties values using dependency information -->
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>2.3</version>
-          <executions>
-              <execution>
-                  <goals>
-                      <goal>properties</goal>
-                  </goals>
-              </execution>
-          </executions>
+        <!-- This plugin will set the properties values using dependency information -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>properties</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-              <source>1.8</source>
-              <target>1.8</target>
-              <fork>true</fork>
-              <!-- Add all the checkers you want to enable here -->
-              <annotationProcessors>
-                  <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
-              </annotationProcessors>
-              <compilerArgs>
-                  <!-- location of the annotated JDK, which comes from a Maven dependency -->
-                  <arg>-Xbootclasspath/p:${annotatedJdk}</arg>
-              </compilerArgs>
-          </configuration>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <fork>true</fork>
+            <!-- Add all the checkers you want to enable here -->
+            <annotationProcessors>
+                <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
+            </annotationProcessors>
+            <compilerArgs>
+                <!-- location of the annotated JDK, which comes from a Maven dependency -->
+                <arg>-Xbootclasspath/p:${annotatedJdk}</arg>
+            </compilerArgs>
+        </configuration>
       </plugin>
     </plugins>
   </build>
+
   <distributionManagement>
     <repository>
       <id>maven-repository</id>
@@ -126,6 +127,5 @@
       <url>${github.maven.repository}</url>
     </repository>
   </distributionManagement>
-
 
 </project>
