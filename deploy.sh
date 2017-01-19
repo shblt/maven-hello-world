@@ -6,14 +6,12 @@ echo "TRAVIS_COMMIT=$TRAVIS_COMMIT"
 echo "TRAVIS_COMMIT_MSG=$TRAVIS_COMMIT_MSG"
 
 
-VERSION=$(echo $TRAVIS_COMMIT_MSG | grep -E -o '^Merge\spull\srequest\s.*\sfrom\s.*\/release-(v[\d.-]+$)')
-echo $VERSION
+RELEASE_VERSION=$(echo $TRAVIS_COMMIT_MSG | grep -P '^Merge\spull\srequest\s.*\sfrom\s.*\/release-(v[\d.-]+$)' | grep -P -o 'release-(v[\d.-]+$)')
+echo $RELEASE_VERSION
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" != "master" ] && [[ "$TRAVIS_COMMIT_MSG" =~ ^Merge\\spull\\srequest\\s.*\\sfrom\\s.*\\/release-(v[\d.-]+$) ]]; then
+if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" != "master" ] && [[ "$RELEASE_VERSION" != "" ]]; then
   echo "merge detected"
-  grep -E -o ".*\/release-(v[\d.-]+$)"
-  VERSION=$(grep -E -o ".*\/release-(v[\d.-]+$)" <<<"$VERSION")
-  echo "VERSION=$VERSION"
+  echo "VERSION=$RELEASE_VERSION"
   mvn -B release:prepare && mvn release:perform
 fi
 
