@@ -5,6 +5,7 @@ echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH, TRAVIS_PULL_REQUEST=
 echo "TRAVIS_COMMIT=$TRAVIS_COMMIT"
 echo "TRAVIS_COMMIT_MSG=$TRAVIS_COMMIT_MSG"
 
+
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" != "master" ] && [[ "$TRAVIS_COMMIT_MSG" =~ ^Merge\\spull\\srequest\\s.*\\sfrom\\s.*\\/release-(v[\d.-]+$) ]]; then
   echo "merge detected"
   grep -E -o ".*\/release-(v[\d.-]+$)"
