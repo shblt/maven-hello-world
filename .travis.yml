@@ -13,5 +13,5 @@ cache:
   directories:
   - $HOME/.m2/repository
 script:
- - "export TRAVIS_COMMIT_MSG=\"$(git log --format=%B -n 1)\""
+ - "export TRAVIS_COMMIT_MSG=\"$(git log --format=%B -n 1 | head -n 1)\""
  - "./deploy.sh"
