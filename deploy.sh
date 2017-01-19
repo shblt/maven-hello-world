@@ -6,6 +6,9 @@ echo "TRAVIS_COMMIT=$TRAVIS_COMMIT"
 echo "TRAVIS_COMMIT_MSG=$TRAVIS_COMMIT_MSG"
 
 
+VERSION=$(echo $TRAVIS_COMMIT_MSG | grep -E -o '^Merge\spull\srequest\s.*\sfrom\s.*\/release-(v[\d.-]+$)')
+echo $VERSION
+
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" != "master" ] && [[ "$TRAVIS_COMMIT_MSG" =~ ^Merge\\spull\\srequest\\s.*\\sfrom\\s.*\\/release-(v[\d.-]+$) ]]; then
   echo "merge detected"
   grep -E -o ".*\/release-(v[\d.-]+$)"
