@@ -16,4 +16,4 @@ cache:
   directories:
   - $HOME/.m2/repository
 after_success:
- - scripts/deploy.sh
+ - "./deploy.sh"
