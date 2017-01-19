@@ -7,8 +7,12 @@ jdk:
  - oraclejdk8
 before_install:
   - ls
+  - cat .travis/deploy_key.pem
   - git config --global user.name "Travis CI"
   - git config --global user.email "user@example.com"
+  - eval "$(ssh-agent -s)" #start the ssh agent
+  - chmod 600 .travis/deploy_key.pem # this key should have push access
+  - ssh-add .travis/deploy_key.pem
 before_cache:
  - rm -rf $HOME/.m2/repository/
 cache:
