@@ -12,7 +12,7 @@ echo $RELEASE_VERSION
 if [ "$TRAVIS_BRANCH" == "master" ] && [[ $RELEASE_VERSION ]]; then
   echo "merge detected"
   cat pom.xml | grep version
-  
+
   mvn -B release:clean release:prepare release:perform
   cat pom.xml | grep version
 
@@ -22,5 +22,5 @@ elif [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
 else
 #if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then 
   echo "regular build"
-  mvn test
+  
 fi
