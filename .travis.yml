@@ -1,6 +1,3 @@
-env:
-  global:
-    secure: tkUao0xIvItCeFJ8nurKXUu0HHbqScOPmW6vW1+81+K1EV2tNOKQ5jVWcSZQKQ7caOdfdswNsZkkrjpBfshwSl7HsJcqVqhUmyb3xhjjsSjsJ4LLt+9NlXxTBtCk9GtlAHVY8zov2d/wEYYlwQURkR5DwoFeKr9Ah/vjfBzwyPQ4vN5geajzHq36mJ/MtEjzaPOwVBjDBFZfzB4r4EncAOcTL20X8Cl3y2k6u2B4AQSUneaC+H8DKJOgr9DmdM1mjep/0ZyzjORP3h+SKxfn1KcoVvskHRsUXWucDyCHQa9/+fOj9nzNw1Z5iAAfBCvgTx1JBKluRyDPndYxmbnUsCMN4OfENfFzsHSYR9BwaRD3gA9BsAgWt6n5ua1ZCvQO0Hj3qyCAaXPhb90APpHqJYE737nlG8Y1RsWJ/rFq+NreY9rR5wFwZpqcwmaouASmSkraJPDQR+l9ogZQ3Ar7Rigzs8oRg9d0jnR90ebaih+hDAsmRIkHttKb6uANjx6AWWGW64VAugI/XgSBWWCDLmI3wy8k9uJIaVS/rmBFF56toLRAkXiAxWW2+c6XQKSh4fFKoI/lIddqnp82LFCmtzPIBxr19KVzHYw9OTd6fSjyxc7x9RKKUvRqsGPT3eMoKTcp/hpna46ekTxqaN3wvarfYLsdS8a0AzJU1kD4irI=
 branches:
   only:
   - master
@@ -19,8 +16,5 @@ cache:
   directories:
   - "$HOME/.m2/repository"
 after_success:
-- git config credential.helper "store --file=.git/credentials"
-- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 - ls 
-- cat .git/credentials
 - "./deploy.sh"
